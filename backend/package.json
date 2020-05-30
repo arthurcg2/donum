@@ -1,0 +1,18 @@
+{
+  "name": "donum-backend",
+  "version": "1.0.0",
+  "description": "Backend for donum",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "helmet": "^3.22.0"
+  }
+}
