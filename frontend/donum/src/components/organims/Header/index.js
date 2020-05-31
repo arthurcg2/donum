@@ -1,6 +1,6 @@
 import React from 'react';
 import TitleLogo from '../../atoms/TitleLogo';
-import '../../../styles/stylePrincipal.css';
+import '../../../styles/General/header.css';
 
 const Header = () => (
     <header id="main-header">
