@@ -74,6 +74,59 @@
     color: #202020;
 }
 
+/* ----- IPHONE ----- */
+
+#border-phone{
+    display: flex;
+    flex-flow: column-reverse;
+    width: 320px;
+    height: 650px;
+    margin: 1.5%;
+    margin-top: 0;
+    margin-right: 0;
+    border: 7px solid transparent;
+    border-radius: 35px;
+    background: 
+        linear-gradient(to right, white, white), 
+        linear-gradient(15deg, rgb(90, 90, 90) , rgb(117, 117, 117)); 
+    background-clip: padding-box, border-box;
+    background-origin: padding-box, border-box;
+}
+
+#menu-all-btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 70px;
+    border-radius: 0 0 25px 25px;
+    background: #2e2e2e;
+}
+
+#button-menu{
+    width: 50px;
+    height: 50px;
+    background: #292929;
+    border-radius: 50%;
+    -moz-box-shadow:    inset 0 0 10px #000000;
+   -webkit-box-shadow: inset 0 0 10px #000000;
+   box-shadow:         inset 0 0 10px #000000;
+}
+
+#screen-phone{
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    border: 10px solid #2e2e2e;
+    border-radius: 24px 24px 0 0;
+    padding: 15px;
+    padding-top: 30px;
+}
+
+/* ----- IPHONE ----- */
+
 /* Atoms END */
 
 
@@ -118,82 +171,6 @@
 /* Organims END */
 
 
-
-#sign-main{
-    display: flex;
-    flex-flow: column-reverse;
-    width: 320px;
-    height: 650px;
-    margin: 1.5%;
-    margin-top: 0;
-    margin-right: 0;
-    border: 7px solid transparent;
-    border-radius: 35px;
-    background: 
-        linear-gradient(to right, white, white), 
-        linear-gradient(15deg, rgb(90, 90, 90) , rgb(117, 117, 117)); 
-    background-clip: padding-box, border-box;
-    background-origin: padding-box, border-box;
-}
-
-
-#sign-main nav{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 70px;
-    border-radius: 0 0 25px 25px;
-    background: #2e2e2e;
-}
-
-#menu-btn{
-    width: 50px;
-    height: 50px;
-    background: #292929;
-    border-radius: 50%;
-    -moz-box-shadow:    inset 0 0 10px #000000;
-   -webkit-box-shadow: inset 0 0 10px #000000;
-   box-shadow:         inset 0 0 10px #000000;
-}
-
-#tela{
-    display: flex;
-    flex-flow: column;
-    align-items: center;
-    height: 100%;
-    width: 100%;
-    border: 10px solid #2e2e2e;
-    border-radius: 24px 24px 0 0;
-    padding: 15px;
-    padding-top: 30px;
-}
-
-
-#login-btn{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #f62210;
-    background: #fff;
-    font-family: nunito;
-    text-decoration: none;
-    font-size: 17pt;
-    margin-top: 24px;
-    width: 260px;
-    height: 45px;
-    border: 2px solid #f62210;
-    border-radius: 45px;
-    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease 0s;
-    cursor: pointer;
-    outline: none;
-}
-
-#login-btn:hover{
-    box-shadow: 0px 15px 20px #f6231036;
-    transform: translateY(-7px);
-}
 
 @media only screen and (max-width: 700px) {
     #adaptation{

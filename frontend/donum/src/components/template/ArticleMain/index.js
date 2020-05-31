@@ -1,13 +1,14 @@
 import React from 'react';
-import TitleStandart from '../../../atoms/TitleStandart'
-import TxtStandart from '../../../atoms/TxtStandart'
-import '../../../../styles/stylePrincipal.css'
+import TitleStandart from '../../atoms/TitleStandart'
+import TxtStandart from '../../atoms/TxtStandart'
+import Iphone from '../../organims/Iphone'
+import '../../../styles/stylePrincipal.css'
 
 const ArticleMain = () => (
     <article id="container">
-        <TitleStandart title="WHO?" />
         <div id="adaptation">
             <article>
+                <TitleStandart title="WHO?" />
                 <TxtStandart title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas a nunc ut risus condimentum
                             sodales. Fusce ipsum orci, bibendum eget mi at, porttitor viverra tellus. Donec congue malesuada auctor. 
                             Fusce hendrerit vehicula maximus. In diam purus, vehicula vitae egestas vel, tristique vitae nibh mattis.
@@ -26,6 +27,7 @@ const ArticleMain = () => (
                             viverra a velit vitae"
                 />
             </article>
+            <Iphone />
         </div>
     </article>
 );
