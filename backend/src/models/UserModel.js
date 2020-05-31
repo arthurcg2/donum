@@ -44,6 +44,15 @@ class User extends Model {
             },
           },
         },
+        estado: {
+          type: DataTypes.STRING,
+          allowNull: false,
+          validate: {
+            notEmpty: {
+              msg: "Estado não pode ser vazio.",
+            },
+          },
+        },
         bairro: {
           type: DataTypes.STRING,
           allowNull: false,
@@ -54,7 +63,11 @@ class User extends Model {
           },
         },
       },
-      { sequelize }
+      {
+        sequelize,
+        tableName: "users",
+        timestamps: false,
+      }
     );
   }
 }
