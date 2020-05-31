@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const helmet = require("helmet");
 
@@ -9,4 +10,4 @@ app.use(express.json());
 
 app.use("/", router);
 
-app.listen(2080);
+app.listen(process.env.PORT);
