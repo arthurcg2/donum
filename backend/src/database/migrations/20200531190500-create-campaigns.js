@@ -2,7 +2,7 @@
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable("users", {
+    return queryInterface.createTable("campaigns", {
       id: {
         type: Sequelize.INTEGER,
         autoIncrement: true,
@@ -13,11 +13,23 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      password: {
+      descricao: {
+        type: Sequelize.TEXT,
+        allowNull: false,
+      },
+      titulo: {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      pais: {
+      dataValidade: {
+        type: Sequelize.DATE,
+        allowNull: false,
+      },
+      dataCriacao: {
+        type: Sequelize.DATE,
+        allowNull: false,
+      },
+      municipio: {
         type: Sequelize.STRING,
         allowNull: false,
       },
@@ -25,11 +37,7 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      municipio: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      bairro: {
+      pais: {
         type: Sequelize.STRING,
         allowNull: false,
       },
@@ -37,6 +45,6 @@ module.exports = {
   },
 
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable("users");
+    return queryInterface.dropTable("campaigns");
   },
 };
