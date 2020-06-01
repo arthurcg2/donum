@@ -1,16 +1,30 @@
 import React from 'react';
-import { BrowserRouter } from 'react-router-dom';
-import Header from './components/organims/Header';
-import ArticleMain from './components/template/ArticleMain'
-import InputStandard from './components/atoms/InputStandard';
+import { BrowserRouter as Router,
+  Switch,
+  Route,
+  Link } from 'react-router-dom';
+import InputStandart from './components/atoms/InputStandart';
+import Form1 from './components/molecules/RegisterForms/User/Form1';
+import Home from './screens/Home';
+import Login from './screens/Login';
+import Register from './screens/Register';
+import './styles/stylePrincipal.css';
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <Header />
-      <ArticleMain />
-      <InputStandard placeholder='COEPINGUIN' />
-    </div>
+      <Router>
+        <Switch>
+            <Route exact path="/">
+              <Home />
+            </Route>
+            <Route exact path="/Login">
+              <Login />
+            </Route>
+            <Route exact path="/Register">
+              <Register />
+            </Route>
+          </Switch>
+        </Router>
   );
 }
 

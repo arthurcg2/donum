@@ -4,9 +4,21 @@
     padding: 30px;
     background: #f62210;
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     align-items: center;
     color: #fff;
     font-family: Patua One;
     font-weight: bold;
+}
+
+#test{
+    font-family: nunito;
+    color: #fff;
+    font-size: 9pt;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+#test:hover{
+    text-decoration: underline;
 }

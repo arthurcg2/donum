@@ -1,10 +1,6 @@
 import React, { Component } from 'react'
 import '../../../styles/stylePrincipal.css';
 
-export default class TitleStandart extends Component{
-    render(){
-        return(
-        <h1 id="container-title-standart"> {this.props.title} </h1>
-        )
-    }
-}
+const TitleStandart = props =>  <h1 id="container-title-standart"> {props.title} </h1>
+
+export default TitleStandart;
