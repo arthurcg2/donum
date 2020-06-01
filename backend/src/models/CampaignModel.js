@@ -1,6 +1,6 @@
 const { Model, DataTypes } = require("sequelize");
 
-class User extends Model {
+class CampaignModel extends Model {
   static init(sequelize) {
     super.init(
       {
@@ -9,25 +9,43 @@ class User extends Model {
           allowNull: false,
           validate: {
             isEmail: {
-              msg: "Esse não é um endereço de email válido",
+              msg: "Insira o email da sua organização.",
             },
           },
         },
-        password: {
+        descricao: {
+          type: DataTypes.TEXT,
+          allowNull: false,
+          validate: {
+            notEmpty: {
+              msg: "Dê uma descrição a sua campanha.",
+            },
+          },
+        },
+        titulo: {
           type: DataTypes.STRING,
           allowNull: false,
           validate: {
             notEmpty: {
-              msg: "Senha não pode ser vazia.",
+              msg: "Dê um nome a sua campanha.",
             },
           },
         },
-        pais: {
-          type: DataTypes.STRING,
+        dataValidade: {
+          type: DataTypes.DATE,
           allowNull: false,
           validate: {
-            notEmpty: {
-              msg: "País não pode ser vazio.",
+            isDate: {
+              msg: "Data de validade de ve ser uma data válida.",
+            },
+          },
+        },
+        dataCriacao: {
+          type: DataTypes.DATE,
+          allowNull: false,
+          validate: {
+            isDate: {
+              msg: "Data de criação de ve ser uma data válida.",
             },
           },
         },
@@ -49,23 +67,23 @@ class User extends Model {
             },
           },
         },
-        bairro: {
+        pais: {
           type: DataTypes.STRING,
           allowNull: false,
           validate: {
             notEmpty: {
-              msg: "Bairro não pode ser vazio.",
+              msg: "País não pode ser vazio.",
             },
           },
         },
       },
       {
         sequelize,
-        tableName: "users",
+        tableName: "campaigns",
         timestamps: false,
       }
     );
   }
 }
 
-module.exports = User;
+module.exports = CampaignModel;

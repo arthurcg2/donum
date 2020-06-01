@@ -2,7 +2,7 @@
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable("users", {
+    return queryInterface.createTable("ongs", {
       id: {
         type: Sequelize.INTEGER,
         autoIncrement: true,
@@ -17,15 +17,23 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      pais: {
+      descricao: {
+        type: Sequelize.TEXT,
+        allowNull: false,
+      },
+      nome: {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      estado: {
+      tipoContatoPrincipal: {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      municipio: {
+      contatoPrincipal: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      endereco: {
         type: Sequelize.STRING,
         allowNull: false,
       },
@@ -33,10 +41,22 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
+      municipio: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      estado: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      pais: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
     });
   },
 
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable("users");
+    return queryInterface.dropTable("ongs");
   },
 };

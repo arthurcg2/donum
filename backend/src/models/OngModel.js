@@ -1,6 +1,6 @@
 const { Model, DataTypes } = require("sequelize");
 
-class User extends Model {
+class OngModel extends Model {
   static init(sequelize) {
     super.init(
       {
@@ -9,25 +9,60 @@ class User extends Model {
           allowNull: false,
           validate: {
             isEmail: {
-              msg: "Esse não é um endereço de email válido",
+              msg: "É necessário cadastrar um email de contato válido",
             },
           },
         },
         password: {
           type: DataTypes.STRING,
           allowNull: false,
+        },
+        descricao: {
+          type: DataTypes.TEXT,
+          allowNull: false,
           validate: {
             notEmpty: {
-              msg: "Senha não pode ser vazia.",
+              msg: "Descrição não pode ser vazia.",
             },
           },
         },
-        pais: {
+        nome: {
           type: DataTypes.STRING,
           allowNull: false,
           validate: {
             notEmpty: {
-              msg: "País não pode ser vazio.",
+              msg: "Nome não pode ser vazio.",
+            },
+          },
+        },
+        tipoContatoPrincipal: {
+          type: DataTypes.STRING,
+          allowNull: false,
+        },
+        contatoPrincipal: {
+          type: DataTypes.STRING,
+          allowNull: false,
+          validate: {
+            notEmpty: {
+              msg: "Um contato principal deve existir",
+            },
+          },
+        },
+        endereco: {
+          type: DataTypes.STRING,
+          allowNull: false,
+          validate: {
+            notEmpty: {
+              msg: "O endereço de sua organização deve existir",
+            },
+          },
+        },
+        bairro: {
+          type: DataTypes.STRING,
+          allowNull: false,
+          validate: {
+            notEmpty: {
+              msg: "Insira o bairro de sua organização",
             },
           },
         },
@@ -49,23 +84,23 @@ class User extends Model {
             },
           },
         },
-        bairro: {
+        pais: {
           type: DataTypes.STRING,
           allowNull: false,
           validate: {
             notEmpty: {
-              msg: "Bairro não pode ser vazio.",
+              msg: "País não pode ser vazio.",
             },
           },
         },
       },
       {
         sequelize,
-        tableName: "users",
+        tableName: "ongs",
         timestamps: false,
       }
     );
   }
 }
 
-module.exports = User;
+module.exports = OngModel;
