@@ -9,7 +9,7 @@ class OngModel extends Model {
           allowNull: false,
           validate: {
             isEmail: {
-              msg: "É necessário cadastrar um email de contato válido",
+              msg: "It's necessary to register a valid contact email",
             },
           },
         },
@@ -17,12 +17,21 @@ class OngModel extends Model {
           type: DataTypes.STRING,
           allowNull: false,
         },
+        imageUrl: {
+          type: DataTypes.STRING,
+          allowNull: false,
+          validate: {
+            notEmpty: {
+              msg: "Your organization must have a profile image.",
+            },
+          },
+        },
         descricao: {
           type: DataTypes.TEXT,
           allowNull: false,
           validate: {
             notEmpty: {
-              msg: "Descrição não pode ser vazia.",
+              msg: "'Description' cannot be empty.",
             },
           },
         },
@@ -31,7 +40,7 @@ class OngModel extends Model {
           allowNull: false,
           validate: {
             notEmpty: {
-              msg: "Nome não pode ser vazio.",
+              msg: "'Name' cannot be empty.",
             },
           },
         },
@@ -44,7 +53,7 @@ class OngModel extends Model {
           allowNull: false,
           validate: {
             notEmpty: {
-              msg: "Um contato principal deve existir",
+              msg: "You must fill 'Main Contact'",
             },
           },
         },
@@ -53,7 +62,7 @@ class OngModel extends Model {
           allowNull: false,
           validate: {
             notEmpty: {
-              msg: "O endereço de sua organização deve existir",
+              msg: "You must give your organization an adress",
             },
           },
         },
@@ -62,7 +71,7 @@ class OngModel extends Model {
           allowNull: false,
           validate: {
             notEmpty: {
-              msg: "Insira o bairro de sua organização",
+              msg: "Insert your organization's neighborhood",
             },
           },
         },
@@ -71,7 +80,7 @@ class OngModel extends Model {
           allowNull: false,
           validate: {
             notEmpty: {
-              msg: "Município não pode ser vazio.",
+              msg: "'County' cannot be empty.",
             },
           },
         },
@@ -80,7 +89,7 @@ class OngModel extends Model {
           allowNull: false,
           validate: {
             notEmpty: {
-              msg: "Estado não pode ser vazio.",
+              msg: "'State' cannot be empty.",
             },
           },
         },
@@ -89,7 +98,7 @@ class OngModel extends Model {
           allowNull: false,
           validate: {
             notEmpty: {
-              msg: "País não pode ser vazio.",
+              msg: "'Country' cannot be empty.",
             },
           },
         },

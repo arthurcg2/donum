@@ -7,12 +7,12 @@ module.exports = {
     if (password.length < 6)
       return res
         .status(400)
-        .json({ error: "Senha tem que ser maior que 6 dígitos" });
+        .json({ error: "Password must be greater then 6 digits" });
 
     try {
       const existingUser = await User.findOne({ where: { email } });
       if (existingUser)
-        return res.status(400).json({ error: "Email já cadastrado" });
+        return res.status(400).json({ error: "Email already registered" });
 
       const hashedPass = await Hasher.makeHash(password);
 
@@ -38,8 +38,7 @@ module.exports = {
       where: { email },
     });
 
-    if (!existingUser)
-      return res.status(400).json({ error: "Usuário não existe" });
+    if (!existingUser) return res.status(400).json({ error: "User not found" });
 
     try {
       const updates = {};
@@ -57,8 +56,7 @@ module.exports = {
   async delete(req, res) {
     const { email } = req.params;
     const existingUser = await User.findOne({ where: { email } });
-    if (!existingUser)
-      return res.status(400).json({ error: "Usuário não existe" });
+    if (!existingUser) return res.status(400).json({ error: "User not found" });
 
     try {
       await existingUser.destroy();
@@ -71,8 +69,7 @@ module.exports = {
     const { email, password } = req.body;
 
     const existingUser = await User.findOne({ where: { email } });
-    if (!existingUser)
-      return res.status(400).json({ error: "Usuário não existe" });
+    if (!existingUser) return res.status(400).json({ error: "User not found" });
 
     const correctPassword = await Hasher.compareToHash(
       password,

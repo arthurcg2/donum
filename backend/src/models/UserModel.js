@@ -9,7 +9,7 @@ class User extends Model {
           allowNull: false,
           validate: {
             isEmail: {
-              msg: "Esse não é um endereço de email válido",
+              msg: "Insert a valid email adress",
             },
           },
         },
@@ -18,7 +18,7 @@ class User extends Model {
           allowNull: false,
           validate: {
             notEmpty: {
-              msg: "Senha não pode ser vazia.",
+              msg: "'Password' must not be empty.",
             },
           },
         },
@@ -27,7 +27,7 @@ class User extends Model {
           allowNull: false,
           validate: {
             notEmpty: {
-              msg: "País não pode ser vazio.",
+              msg: "'Country' must not be empty.",
             },
           },
         },
@@ -36,7 +36,7 @@ class User extends Model {
           allowNull: false,
           validate: {
             notEmpty: {
-              msg: "Município não pode ser vazio.",
+              msg: "'County' must not be empty.",
             },
           },
         },
@@ -45,7 +45,7 @@ class User extends Model {
           allowNull: false,
           validate: {
             notEmpty: {
-              msg: "Estado não pode ser vazio.",
+              msg: "'State' must not be empty.",
             },
           },
         },
@@ -54,7 +54,7 @@ class User extends Model {
           allowNull: false,
           validate: {
             notEmpty: {
-              msg: "Bairro não pode ser vazio.",
+              msg: "'Neighborhood' must not be empty.",
             },
           },
         },

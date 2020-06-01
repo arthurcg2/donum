@@ -7,6 +7,7 @@ module.exports = {
       const ongs = await Ong.findAll({
         attributes: [
           "email",
+          "imageUrl",
           "nome",
           "descricao",
           "tipoContatoPrincipal",
@@ -43,20 +44,17 @@ module.exports = {
     if (password.length < 6)
       return res
         .status(400)
-        .json({ error: "Senha tem que ser maior que 6 dígitos" });
+        .json({ error: "Password must be greater then 6 digits" });
 
-    if (
-      tipoContatoPrincipal !== "email" &&
-      tipoContatoPrincipal !== "telefone"
-    ) {
+    if (tipoContatoPrincipal !== "email" && tipoContatoPrincipal !== "phone") {
       return res.status(400).json({
-        error: "O tipo do contato principal deve ser email ou telefone",
+        error: "The main contact must be a phone number our an email",
       });
     }
     try {
       const existingOng = await Ong.findOne({ where: { email } });
       if (existingOng)
-        return res.status(400).json({ error: "Email já cadastrado" });
+        return res.status(400).json({ error: "Email already registered" });
 
       const hashedPass = await Hasher.makeHash(password);
       console.log(hashedPass);
@@ -65,6 +63,7 @@ module.exports = {
         email,
         nome,
         password: hashedPass,
+        imageUrl,
         descricao,
         endereco,
         bairro,
@@ -85,7 +84,7 @@ module.exports = {
     try {
       const existingOng = await Ong.findOne({ where: { email } });
       if (!existingOng)
-        return res.status(400).json({ error: "Organização não existe" });
+        return res.status(400).json({ error: "Non existing organization" });
       await existingOng.destroy();
       return res.sendStatus(200);
     } catch (err) {
@@ -98,10 +97,10 @@ module.exports = {
 
     const existingOng = await Ong.findOne({ where: { email } });
     if (!existingOng)
-      return res.status(400).json({ error: "Organização não existe" });
+      return res.status(400).json({ error: "Non existing organization" });
 
     try {
-      const updates = {};
+      coeq.body.imageUrl;
       if (req.body.pais) updates.pais = req.body.pais;
       if (req.body.estado) updates.estado = req.body.estado;
       if (req.body.cidade) updates.cidade = req.body.cidade;
@@ -126,7 +125,7 @@ module.exports = {
 
     const existingOng = await Ong.findOne({ where: { email } });
     if (!existingOng)
-      return res.status(400).json({ error: "Organização não existe" });
+      return res.status(400).json({ error: "Non existing organization" });
 
     const correctPassword = await Hasher.compareToHash(
       password,
