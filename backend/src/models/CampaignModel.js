@@ -9,7 +9,7 @@ class CampaignModel extends Model {
           allowNull: false,
           validate: {
             isEmail: {
-              msg: "Insira o email da sua organização.",
+              msg: "Insert your organization email.",
             },
           },
         },
@@ -18,7 +18,7 @@ class CampaignModel extends Model {
           allowNull: false,
           validate: {
             notEmpty: {
-              msg: "Dê uma descrição a sua campanha.",
+              msg: "Give your campaign a description.",
             },
           },
         },
@@ -27,7 +27,7 @@ class CampaignModel extends Model {
           allowNull: false,
           validate: {
             notEmpty: {
-              msg: "Dê um nome a sua campanha.",
+              msg: "Give your campaign a name.",
             },
           },
         },
@@ -36,16 +36,20 @@ class CampaignModel extends Model {
           allowNull: false,
           validate: {
             isDate: {
-              msg: "Data de validade de ve ser uma data válida.",
+              msg: "Expiration date must be a valid date.",
             },
           },
+        },
+        emergencia: {
+          type: DataTypes.INTEGER,
+          allowNull: false,
         },
         dataCriacao: {
           type: DataTypes.DATE,
           allowNull: false,
           validate: {
             isDate: {
-              msg: "Data de criação de ve ser uma data válida.",
+              msg: "Creation date must be a valid date.",
             },
           },
         },
@@ -54,7 +58,7 @@ class CampaignModel extends Model {
           allowNull: false,
           validate: {
             notEmpty: {
-              msg: "Município não pode ser vazio.",
+              msg: "'County' cannot be empty.",
             },
           },
         },
@@ -63,7 +67,7 @@ class CampaignModel extends Model {
           allowNull: false,
           validate: {
             notEmpty: {
-              msg: "Estado não pode ser vazio.",
+              msg: "'State' cannot be empty.",
             },
           },
         },
@@ -72,7 +76,7 @@ class CampaignModel extends Model {
           allowNull: false,
           validate: {
             notEmpty: {
-              msg: "País não pode ser vazio.",
+              msg: "'Country' cannot be empty.",
             },
           },
         },

@@ -13,24 +13,24 @@ module.exports = {
     const dataCriacao = new Date(req.body.dataCriacao);
 
     if (!validateDate(dataCriacao))
-      return res.status(400).json({ error: "A data de criação é invalida." });
+      return res.status(400).json({ error: "Creation date is invalid." });
     if (!validateDate(dataValidade))
-      return res.status(400).json({ error: "A data de criação é invalida." });
+      return res.status(400).json({ error: "Validation date is invalid." });
 
     const ong = await Ong.findOne({ where: { email } });
     if (!ong) {
       return res
         .status(400)
-        .json({ error: "Não existe uma ONG cadastrada com este email." });
+        .json({ error: "There is no NGO registered with this email." });
     }
     if (email !== ong.email)
-      return res.status(400).json({ error: "Email da ONG inválido." });
+      return res.status(400).json({ error: "NGO email invalid." });
 
     const existingCampaign = await Campaign.findOne({ where: { email } });
     if (existingCampaign) {
       return res
         .status(400)
-        .json({ error: "Uma ONG só pode ter uma campanha por vez." });
+        .json({ error: "A NGO must have only one campaign at a time." });
     }
     try {
       await Campaign.create({
@@ -42,6 +42,7 @@ module.exports = {
         municipio,
         estado,
         pais,
+        emergencia,
       });
       return res.sendStatus(200);
     } catch (err) {
@@ -52,7 +53,7 @@ module.exports = {
     const { email } = req.params;
     const existingCampaign = await Campaign.findOne({ where: { email } });
     if (!existingCampaign)
-      return res.status(400).json({ error: "Campanha não existe" });
+      return res.status(400).json({ error: "Campaign doesn't exist" });
 
     try {
       await existingCampaign.destroy();
@@ -81,7 +82,7 @@ module.exports = {
       where: { email: req.params.email },
     });
     if (!existingCampaign) {
-      return res.status(400).json({ error: "Esta campanha não existe" });
+      return res.status(400).json({ error: "Campaign doesn't exist" });
     }
     try {
       const updates = {};
