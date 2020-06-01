@@ -71,9 +71,18 @@
 }
 
 #txt-standart{
+    margin: 20px;
     font-family: nunito;
     font-size: 16pt;
     color: #202020;
+    text-align: left;
+}
+
+#txt-off-focus{
+    font-family: nunito;
+    font-size: 12pt;
+    color: #646464;
+    text-align: center;
 }
 
 #file-main{
@@ -159,6 +168,23 @@
 
 #adaptation{ /* Dependente do container */
     display: flex;
+}
+
+#img-perfil{
+    background: rgb(252, 97, 97);
+    width: 100%;
+    height: 300px;
+}
+
+#campanha{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border: 1.5px solid ;
+    background: rgb(192, 192, 192);
+    padding: 20px;
+    margin: 5%;
+    box-sizing: border-box;
 }
 
 /* Organims END */

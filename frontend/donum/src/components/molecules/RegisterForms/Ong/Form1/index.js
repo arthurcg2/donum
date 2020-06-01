@@ -49,18 +49,21 @@ export const FormOng2 = props => (
                 minimunvalue={2}
                 type='text'
                 authorization={true}
+                onChange={(e) => props.onChange("name",e)}
             />
             <InputStandart
                 placeholder='Street'
                 minimunvalue={2}
                 type='text'
                 authorization={true}
+                onChange={(e) => props.onChange("name",e)}
             />
             <InputStandart
                 placeholder='Number'
                 minimunvalue={1}
                 type='number'
                 authorization={true}
+                onChange={(e) => props.onChange("name",e)}
             />
             
         </div>
@@ -77,6 +80,7 @@ export const FormOng3 = props => (
                 minimunvalue={6}
                 type='number'
                 authorization={true}
+                onChange={(e) => props.onChange("name",e)}
             />
         </div>
         <ButtonStandart title="Continue" onClick={() => props.onClick()}/>
@@ -92,6 +96,7 @@ export const FormOng4 = props => (
                 minimunvalue={10}
                 type='text'
                 authorization={true}
+                onChange={(e) => props.onChange("name",e)}
             />
             <AvatarFileInput />
         </div>

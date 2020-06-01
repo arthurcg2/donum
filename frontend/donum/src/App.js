@@ -8,6 +8,7 @@ import Form1 from './components/molecules/RegisterForms/User/Form1';
 import Home from './screens/Home';
 import Login from './screens/Login';
 import Register from './screens/Register';
+import Painel from './screens/PainelUser';
 import './styles/stylePrincipal.css';
 
 const App = () => {
@@ -22,6 +23,9 @@ const App = () => {
             </Route>
             <Route exact path="/Register">
               <Register />
+            </Route>
+            <Route exact path= "/Painel" >
+              <Painel />
             </Route>
           </Switch>
         </Router>

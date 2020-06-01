@@ -10,6 +10,7 @@ const InputStandart = props =>(
             max={props.maximunvalue}
             type={props.type}
             required
+            onChange={(e) => props.onChange("name",e)}
         /> 
         :
         <input
@@ -17,6 +18,7 @@ const InputStandart = props =>(
             min={props.minimunvalue}
             max={props.maximunvalue}
             type={props.type}
+            onChange={(e) => props.onChange("name",e)}
         />
 )
 

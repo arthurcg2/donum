@@ -8,7 +8,7 @@ const AvatarFileInput = () => {
       var imagedata = document.querySelector('input[type="file"]').files[0];
       data.append("data", imagedata);
   
-      fetch("http://localhost:8910/taskCreationController/createStoryTask", {
+      fetch("https://donum-backend.herokuapp.com/images", {
       mode: 'no-cors',
       method: "POST",
       headers: {
