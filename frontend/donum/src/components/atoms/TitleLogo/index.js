@@ -1,9 +1,5 @@
 import React, { Component } from 'react'
 
-export default class TitleLogo extends Component{
-    render(){
-        return(
-        <h1>{ this.props.title }</h1>
-        )
-    }
-}
+const TitleLogo = props => <h1 id={props.id}>{ props.title }</h1>
+
+export default TitleLogo

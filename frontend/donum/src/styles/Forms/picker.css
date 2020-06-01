@@ -1,18 +1,14 @@
-input {
+#select-main {
     width: 320px;
     height:40px;
     border-radius: 5px;
     background-color: #fcfaf8;
     border:1.5px solid #f0f0f0;
     box-sizing: border-box;
-    color:#383838;
+    color:grey;
     letter-spacing: 0.7px;
     text-align: justify;
     padding-left:10px;
     font-size:18px;
     margin-top: 30px;
-}
-input::placeholder {
-    color:grey;
-    text-align: justify;
 }

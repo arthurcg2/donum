@@ -1,0 +1,23 @@
+form {
+    display:flex;
+    text-align: center;
+    flex-flow: column;
+    justify-content: space-around;
+    align-items: center;
+    height: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width:100%;
+}
+form .data-level {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+form div {
+    display: flex;
+    flex-flow: column;
+
+}

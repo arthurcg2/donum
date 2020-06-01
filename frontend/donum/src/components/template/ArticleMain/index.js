@@ -4,7 +4,8 @@ import TxtStandart from '../../atoms/TxtStandart'
 import Iphone from '../../organims/Iphone'
 import '../../../styles/stylePrincipal.css'
 
-const ArticleMain = () => (
+const ArticleMain = () => {
+    return (
     <article id="container">
         <div id="adaptation">
             <article>
@@ -30,6 +31,7 @@ const ArticleMain = () => (
             <Iphone />
         </div>
     </article>
-);
+    )
+};
 
 export default ArticleMain;

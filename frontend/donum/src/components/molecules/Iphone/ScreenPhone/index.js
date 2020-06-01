@@ -6,7 +6,7 @@ import '../../../../styles/stylePrincipal.css'
 
 const ScreenPhone = () => (
     <div id="screen-phone">
-        <TitleStandart title="Register Now"/>
+        <TitleStandart title="Register Now" id="title-box-log"/>
         <ButtonStandart title="Register"/>  
         <TitleStandart title="or"/>
         <ButtonOffFocus title="Login" />
