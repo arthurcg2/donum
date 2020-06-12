@@ -12,20 +12,22 @@ const ImageController = require('./controllers/ImageController');
 
 // User routes
 router.post('/user', UserController.store);
-router.post('/user/login', UserController.login);
 router.delete('/user/:id', UserController.delete);
+router.post('/user/login', UserController.login);
 router.put('/user/:id', UserController.update);
 
 // ONG routes
 router.post('/ong/login', OngController.login);
 router.post('/ong', upload.single('avatar'), OngController.store);
 router.get('/ong', OngController.index);
+router.get('/ong/:id', OngController.specific);
 router.put('/ong/:id', upload.single('avatar'), OngController.update);
 router.delete('/ong/:id', OngController.delete);
 
 // Campaign routes
 router.post('/campaign', CampaignController.store);
 router.get('/campaign', CampaignController.index);
+router.get('/campaign/:id', CampaignController.specific);
 router.put('/campaign/:id', CampaignController.update);
 router.delete('/campaign/:id', CampaignController.delete);
 

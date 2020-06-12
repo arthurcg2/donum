@@ -107,4 +107,29 @@ module.exports = {
       return res.status(400).json({ error: err });
     }
   },
+  async specific(req, res) {
+    const { id } = req.params;
+    const existingCampaign = await Campaign.findOne({ where: { id } }); //id aqui
+    if (!existingCampaign)
+      return res
+        .status(400)
+        .json({ error: 'There is no campaign with this id' });
+    try {
+      res.status(200).json({
+        id: existingCampaign.id,
+        email: existingCampaign.email,
+        descricao: existingCampaign.descricao,
+        titulo: existingCampaign.titulo,
+        dataValidade: existingCampaign.dataValidade,
+        dataCriacao: existingCampaign.dataCriacao,
+        municipio: existingCampaign.municipio,
+        estado: existingCampaign.estado,
+        pais: existingCampaign.pais,
+        emergencia: existingCampaign.emergencia,
+      });
+    } catch (err) {
+      console.log(err);
+      return res.sendStatus(500);
+    }
+  },
 };

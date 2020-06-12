@@ -129,7 +129,6 @@ module.exports = {
       return res.status(400).json({ error: err });
     }
   },
-
   async login(req, res) {
     const { email, password } = req.body;
 
@@ -143,5 +142,32 @@ module.exports = {
     );
     if (correctPassword) return res.sendStatus(200);
     else return res.sendStatus(401);
+  },
+  async specific(req, res) {
+    const { id } = req.params;
+    const existingOng = await Ong.findOne({ where: { id } }); //id aqui
+    if (!existingOng)
+      return res
+        .status(400)
+        .json({ error: 'There is no organization with this id' });
+    try {
+      res.status(200).json({
+        id,
+        email: existingOng.email,
+        imageUrl: existingOng.imageUrl,
+        nome: existingOng.nome,
+        descricao: existingOng.descricao,
+        tipoContatoPrincipal: existingOng.tipoContatoPrincipal,
+        contatoPrincipal: existingOng.contatoPrincipal,
+        pais: existingOng.pais,
+        estado: existingOng.estado,
+        municipio: existingOng.municipio,
+        bairro: existingOng.bairro,
+        endereco: existingOng.endereco,
+      });
+    } catch (err) {
+      console.log(err);
+      return res.sendStatus(500);
+    }
   },
 };
