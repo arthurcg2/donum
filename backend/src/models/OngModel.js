@@ -1,4 +1,4 @@
-const { Model, DataTypes } = require("sequelize");
+const { Model, DataTypes } = require('sequelize');
 
 class OngModel extends Model {
   static init(sequelize) {
@@ -22,7 +22,7 @@ class OngModel extends Model {
           allowNull: false,
           validate: {
             notEmpty: {
-              msg: "Your organization must have a profile image.",
+              msg: 'Your organization must have a profile image.',
             },
           },
         },
@@ -53,7 +53,7 @@ class OngModel extends Model {
           allowNull: false,
           validate: {
             notEmpty: {
-              msg: "You must fill 'Main Contact'",
+              msg: 'You must have a main contact',
             },
           },
         },
@@ -62,7 +62,7 @@ class OngModel extends Model {
           allowNull: false,
           validate: {
             notEmpty: {
-              msg: "You must give your organization an adress",
+              msg: 'You must give your organization an adress',
             },
           },
         },
@@ -105,7 +105,7 @@ class OngModel extends Model {
       },
       {
         sequelize,
-        tableName: "ongs",
+        tableName: 'ongs',
         timestamps: false,
       }
     );

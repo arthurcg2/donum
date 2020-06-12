@@ -1,8 +1,8 @@
-"use strict";
+'use strict';
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable("campaigns", {
+    return queryInterface.createTable('campaigns', {
       id: {
         type: Sequelize.INTEGER,
         autoIncrement: true,
@@ -19,6 +19,10 @@ module.exports = {
       },
       titulo: {
         type: Sequelize.STRING,
+        allowNull: false,
+      },
+      emergencia: {
+        type: Sequelize.INTEGER,
         allowNull: false,
       },
       dataValidade: {
@@ -45,6 +49,6 @@ module.exports = {
   },
 
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable("campaigns");
+    return queryInterface.dropTable('campaigns');
   },
 };

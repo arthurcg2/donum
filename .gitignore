@@ -8,6 +8,7 @@ lerna-debug.log*
 
 # Enviroment
 .env
+.todo
 
 # IDE
 .vscode

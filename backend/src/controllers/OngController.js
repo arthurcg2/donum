@@ -1,29 +1,31 @@
-const Ong = require("../models/OngModel");
-const Hasher = require("../utils/hash");
+const Ong = require('../models/OngModel');
+const User = require('../models/UserModel');
+const Hasher = require('../utils/hash');
 
 module.exports = {
   async index(req, res) {
     try {
       const ongs = await Ong.findAll({
         attributes: [
-          "email",
-          "imageUrl",
-          "nome",
-          "descricao",
-          "tipoContatoPrincipal",
-          "contatoPrincipal",
-          "pais",
-          "estado",
-          "municipio",
-          "bairro",
-          "endereco",
+          'id',
+          'email',
+          'imageUrl',
+          'nome',
+          'descricao',
+          'tipoContatoPrincipal',
+          'contatoPrincipal',
+          'pais',
+          'estado',
+          'municipio',
+          'bairro',
+          'endereco',
         ],
       });
 
-      res.json(ongs);
+      return res.json(ongs);
     } catch (err) {
       console.error(err);
-      res.sendStatus(500);
+      return res.sendStatus(500);
     }
   },
   async store(req, res) {
@@ -32,6 +34,7 @@ module.exports = {
       password,
       nome,
       descricao,
+      imageUrl,
       tipoContatoPrincipal,
       contatoPrincipal,
       endereco,
@@ -44,20 +47,23 @@ module.exports = {
     if (password.length < 6)
       return res
         .status(400)
-        .json({ error: "Password must be greater then 6 digits" });
+        .json({ error: 'Password must be greater then 6 digits' });
 
-    if (tipoContatoPrincipal !== "email" && tipoContatoPrincipal !== "phone") {
+    if (tipoContatoPrincipal !== 'email' && tipoContatoPrincipal !== 'phone') {
       return res.status(400).json({
-        error: "The main contact must be a phone number our an email",
+        error: 'The main contact type must be a phone or an email',
       });
     }
     try {
       const existingOng = await Ong.findOne({ where: { email } });
       if (existingOng)
-        return res.status(400).json({ error: "Email already registered" });
+        return res.status(400).json({ error: 'Email already registered' });
+
+      const existingUser = await User.findOne({ where: { email } });
+      if (existingUser)
+        return res.status(400).json({ error: 'Email already registered' });
 
       const hashedPass = await Hasher.makeHash(password);
-      console.log(hashedPass);
 
       await Ong.create({
         email,
@@ -76,15 +82,19 @@ module.exports = {
 
       return res.sendStatus(200);
     } catch (err) {
+      if (!err.errors) {
+        console.log(err);
+        return res.sendStatus(500);
+      }
       return res.status(400).json({ error: err.errors[0].message });
     }
   },
   async delete(req, res) {
-    const { email } = req.params;
+    const { id } = req.params;
     try {
-      const existingOng = await Ong.findOne({ where: { email } });
+      const existingOng = await Ong.findOne({ where: { id } });
       if (!existingOng)
-        return res.status(400).json({ error: "Non existing organization" });
+        return res.status(400).json({ error: 'Non existing organization' });
       await existingOng.destroy();
       return res.sendStatus(200);
     } catch (err) {
@@ -92,15 +102,16 @@ module.exports = {
     }
   },
   async update(req, res) {
-    const { email } = req.params;
-    if (!email) return res.sendStatus(400);
-
-    const existingOng = await Ong.findOne({ where: { email } });
-    if (!existingOng)
-      return res.status(400).json({ error: "Non existing organization" });
+    const { id } = req.params; //id aqui
+    if (!id) return res.sendStatus(400); //id aqui
 
     try {
-      coeq.body.imageUrl;
+      const existingOng = await Ong.findOne({ where: { id } }); //id aqui
+      if (!existingOng)
+        return res.status(400).json({ error: 'Non existing organization' });
+
+      const updates = {};
+
       if (req.body.pais) updates.pais = req.body.pais;
       if (req.body.estado) updates.estado = req.body.estado;
       if (req.body.cidade) updates.cidade = req.body.cidade;
@@ -112,7 +123,6 @@ module.exports = {
         updates.contatoPrincipal = req.body.contatoPrincipal;
       if (req.body.tipoContatoPrincipal)
         updates.tipoContatoPrincipal = req.body.tipoContatoPrincipal;
-
       await existingOng.update(updates);
       return res.sendStatus(200);
     } catch (err) {
@@ -125,7 +135,7 @@ module.exports = {
 
     const existingOng = await Ong.findOne({ where: { email } });
     if (!existingOng)
-      return res.status(400).json({ error: "Non existing organization" });
+      return res.status(400).json({ error: 'Non existing organization' });
 
     const correctPassword = await Hasher.compareToHash(
       password,

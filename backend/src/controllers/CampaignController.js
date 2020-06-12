@@ -1,5 +1,5 @@
-const Campaign = require("../models/CampaignModel.js");
-const Ong = require("../models/OngModel.js");
+const Campaign = require('../models/CampaignModel.js');
+const Ong = require('../models/OngModel.js');
 
 function validateDate(d) {
   return d instanceof Date && !isNaN(d);
@@ -7,30 +7,36 @@ function validateDate(d) {
 
 module.exports = {
   async store(req, res) {
-    const { email, descricao, titulo, municipio, estado, pais } = req.body;
+    const {
+      email,
+      descricao,
+      titulo,
+      municipio,
+      emergencia,
+      estado,
+      pais,
+    } = req.body;
 
     const dataValidade = new Date(req.body.dataValidade);
     const dataCriacao = new Date(req.body.dataCriacao);
 
     if (!validateDate(dataCriacao))
-      return res.status(400).json({ error: "Creation date is invalid." });
+      return res.status(400).json({ error: 'Creation date is invalid.' });
     if (!validateDate(dataValidade))
-      return res.status(400).json({ error: "Validation date is invalid." });
+      return res.status(400).json({ error: 'Validation date is invalid.' });
 
     const ong = await Ong.findOne({ where: { email } });
     if (!ong) {
       return res
         .status(400)
-        .json({ error: "There is no NGO registered with this email." });
+        .json({ error: 'There is no NGO registered with this email.' });
     }
-    if (email !== ong.email)
-      return res.status(400).json({ error: "NGO email invalid." });
 
     const existingCampaign = await Campaign.findOne({ where: { email } });
     if (existingCampaign) {
       return res
         .status(400)
-        .json({ error: "A NGO must have only one campaign at a time." });
+        .json({ error: 'A NGO must have only one campaign at a time.' });
     }
     try {
       await Campaign.create({
@@ -46,12 +52,16 @@ module.exports = {
       });
       return res.sendStatus(200);
     } catch (err) {
+      if (!err.errors) {
+        console.log(err);
+        return res.sendStatus(500);
+      }
       return res.status(400).json({ error: err.errors[0].message });
     }
   },
   async delete(req, res) {
-    const { email } = req.params;
-    const existingCampaign = await Campaign.findOne({ where: { email } });
+    const { id } = req.params;
+    const existingCampaign = await Campaign.findOne({ where: { id } });
     if (!existingCampaign)
       return res.status(400).json({ error: "Campaign doesn't exist" });
 
@@ -79,7 +89,7 @@ module.exports = {
   },
   async update(req, res) {
     const existingCampaign = await Campaign.findOne({
-      where: { email: req.params.email },
+      where: { id: req.params.id },
     });
     if (!existingCampaign) {
       return res.status(400).json({ error: "Campaign doesn't exist" });
