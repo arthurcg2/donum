@@ -1,8 +1,13 @@
 const Campaign = require('../models/CampaignModel.js');
 const Ong = require('../models/OngModel.js');
 
-function validateDate(d) {
-  return d instanceof Date && !isNaN(d);
+function validateDates(start, end) {
+  if (!(start instanceof Date && !isNaN(start))) return false;
+  if (!(end instanceof Date && !isNaN(start))) return false;
+
+  if (end - start <= 0) return false;
+
+  return true;
 }
 
 module.exports = {
@@ -18,12 +23,12 @@ module.exports = {
     } = req.body;
 
     const dataValidade = new Date(req.body.dataValidade);
-    const dataCriacao = new Date(req.body.dataCriacao);
+    const dataCriacao = new Date();
 
-    if (!validateDate(dataCriacao))
-      return res.status(400).json({ error: 'Creation date is invalid.' });
-    if (!validateDate(dataValidade))
-      return res.status(400).json({ error: 'Validation date is invalid.' });
+    if (!validateDates(dataCriacao, dataValidade))
+      return res
+        .status(400)
+        .json({ error: 'Ending or starting date is invalid.' });
 
     const ong = await Ong.findOne({ where: { email } });
     if (!ong) {
@@ -43,8 +48,8 @@ module.exports = {
         email,
         descricao,
         titulo,
-        dataValidade,
         dataCriacao,
+        dataValidade,
         municipio,
         estado,
         pais,
